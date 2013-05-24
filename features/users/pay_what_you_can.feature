@@ -7,31 +7,19 @@ Feature: Pay what you can
     Given I am logged in
     And I am on the pay what you can page
     When I choose a monthly contribution of $2
-    And I click "Contribute"
     Then I should see the SwipeHQ payment page for a monthly $2 payment
-
     When I fill in and submit the payment page
     Then I should see a confirmation page thanking me for my contribution
 
   Scenario: Signed in user pays a once-off contribution
     Given I am logged in
+    And my environment is set up
     And I am on the pay what you can page
-    When I choose a once-off contribution of $10
-    And I click "Contribute"
-    Then I should see the SwipeHQ payment page for a once-off $10 payment
-
+    When I choose a once-off contribution of $100
+    Then I should see the SwipeHQ payment page for a once-off $100 payment
     When I fill in and submit the payment page
     Then I should see a confirmation page thanking me for my contribution
 
   Scenario: Signed out user pays a monthly contribution
-    And I am on the pay what you can page
-    When I choose a monthly contribution of $2
-    And I click "Contribute"
-    Then I be should be taken to the sign in page
-
-    When I sign in
-    Then I should see the SwipeHQ payment page
-
-    When I fill in and submit the payment page
-    Then I should see a confirmation page thanking me for my contribution
-
+    When I visit the pay what you can page
+    Then I be should be redirected to the sign in page
